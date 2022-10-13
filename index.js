@@ -127,7 +127,7 @@ const eventoEditar = () =>{
     
 }
 
-formulario.addEventListener("submit", (event)=>{
+formulario.addEventListener("submit", async (event)=>{
     event.preventDefault()
     let nombre = inputNombre.value;
         let precio = inputPrecio.value;
@@ -140,18 +140,18 @@ formulario.addEventListener("submit", (event)=>{
         }
 
     if(bandera == false){
-        requestPost(producto)
+        await requestPost(producto)
     }else{
         let btnActualizar = document.querySelector("#formulario .btn-primary")
         console.dir(btnActualizar)
         let id = btnActualizar.attributes[1].textContent;
         console.log(id);
-        requestPut(`https://63364e0965d1e8ef266ab394.mockapi.io/productos/${id}`, producto)
+        await requestPut(`https://63364e0965d1e8ef266ab394.mockapi.io/productos/${id}`, producto)
         bandera = false;
     }
     
     formulario.reset()
-    //location.reload()
+    location.reload()
     console.log(producto);
 })
 
